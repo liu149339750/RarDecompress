@@ -8,17 +8,62 @@
     tools:context=".MainActivity" >
     
     <LinearLayout 
+        android:id="@+id/title"
+        android:background="@drawable/secondary_title_background"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        
+        <LinearLayout 
+            android:id="@+id/title_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageView 
+            android:padding="6dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher"/>
+        <TextView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="@string/app_name"/>
+        </LinearLayout>
+        <RelativeLayout 
+            android:id="@+id/ad"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent">
+         <ImageView 
+             android:visibility="gone"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentTop="true"
+             android:layout_marginLeft="10dp"
+             android:layout_marginTop="10dp"
+               android:src="@drawable/cancel"
+               android:layout_height="35dp"
+           	   android:layout_width="35dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout 
         android:id="@+id/head"
+        android:layout_below="@id/title"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:background="@drawable/secondary_title_background"
         android:orientation="horizontal">
         
         <Spinner 
+            android:id="@+id/tspinner"
             android:background="@drawable/path_pane_bg"
             android:spinnerMode="dropdown"
             android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_width="0dp"
             android:layout_weight="1"/>
         <ImageButton 

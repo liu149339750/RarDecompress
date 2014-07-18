@@ -2,7 +2,7 @@ package com.lw.item;
 
 import java.io.File;
 
-import com.example.rardecompress.MediaFile;
+import com.lw.activity.MediaFile;
 
 import android.content.Context;
 import android.content.Intent;

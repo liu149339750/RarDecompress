@@ -5,7 +5,8 @@ package com.lw.item;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
-import com.example.rardecompress.R;
+import com.lw.rardecompress.R;
+
 
 public class ImageItem extends HasThumbItem{
 

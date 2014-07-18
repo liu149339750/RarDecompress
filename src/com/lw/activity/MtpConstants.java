@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.rardecompress;
+package com.lw.activity;
 
 /**
  * A class containing constants in the MTP and PTP specifications.

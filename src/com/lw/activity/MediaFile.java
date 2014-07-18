@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.rardecompress;
+package com.lw.activity;
 
 import java.util.HashMap;
 
@@ -92,9 +92,25 @@ public class MediaFile {
     public static final int FILE_TYPE_MS_WORD       = 104;
     public static final int FILE_TYPE_MS_EXCEL      = 105;
     public static final int FILE_TYPE_MS_POWERPOINT = 106;
-    public static final int FILE_TYPE_ZIP           = 107;
-    public static final int FILE_TYPE_RAR           = 108;
-    public static final int FILE_TYPE_APK           = 109;
+    public static final int FILE_TYPE_APK           = 107;
+    public static final int FILE_TYPE_ZIP           = 108;
+    public static final int FILE_TYPE_RAR           = 109;
+    public static final int FILE_TYPE_GZ            = 110;
+    public static final int FILE_TYPE_JAR           = 111;
+    public static final int FILE_TYPE_7Z            = 112;
+    public static final int FILE_TYPE_TAR           = 113;
+    public static final int FILE_TYPE_DUMP          = 114;
+    public static final int FILE_TYPE_AR            = 115;
+    public static final int FILE_TYPE_ARJ           = 116;
+    public static final int FILE_TYPE_CPIO          = 117;
+    public static final int FILE_TYPE_XZ            = 118;
+    public static final int FILE_TYPE_Z             = 119;
+    public static final int FILE_TYPE_BZIP2         = 120;
+    public static final int FILE_TYPE_LZMA          = 121;
+    public static final int FILE_TYPE_PACK200       = 122;
+    public static final int FILE_TYPE_SNAPPY_FRAMED = 123;
+    public static final int FILE_TYPE_SNAPPY_RAW    = 124;
+    
     
     public static class MediaFileType {
         public final int fileType;
@@ -199,6 +215,22 @@ public class MediaFile {
         addFileType("FLAC", FILE_TYPE_FLAC, "audio/flac", MtpConstants.FORMAT_FLAC);
         addFileType("ZIP", FILE_TYPE_ZIP, "application/zip");
         addFileType("APK", FILE_TYPE_APK, "application/apk");
+        addFileType("RAR", FILE_TYPE_RAR, "application/rar");
+        addFileType("GZ", FILE_TYPE_GZ, "application/gz");
+        addFileType("JAR", FILE_TYPE_JAR, "application/jar");
+        addFileType("7Z", FILE_TYPE_7Z, "application/7z");
+        addFileType("TAR", FILE_TYPE_TAR, "application/tar");
+        addFileType("DUMP", FILE_TYPE_DUMP, "application/dump");
+        addFileType("AR", FILE_TYPE_AR, "application/ar");
+        addFileType("ARJ", FILE_TYPE_ARJ, "application/arj");
+        addFileType("CPIO", FILE_TYPE_CPIO, "application/cpio");
+        addFileType("XZ", FILE_TYPE_XZ, "application/xz");
+        addFileType("Z", FILE_TYPE_Z, "application/z");
+        addFileType("BZ2", FILE_TYPE_BZIP2, "application/bzip2");
+        addFileType("LZMA", FILE_TYPE_LZMA, "application/lzma");
+        addFileType("PACK", FILE_TYPE_PACK200, "application/pack");
+        addFileType("SZ", FILE_TYPE_SNAPPY_FRAMED, "application/sz");
+        addFileType("SNAPPY-RAY", FILE_TYPE_SNAPPY_RAW, "application/snappy-raw");
     }
 
     public static boolean isAudioFileType(int fileType) {

@@ -2,14 +2,15 @@ package com.lw.item;
 
 import java.io.IOException;
 
-import com.example.rardecompress.R;
-
-import edu.mit.mobile.android.imagecache.ImageCache;
-import edu.mit.mobile.android.imagecache.ImageCache.OnImageLoadListener;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
+
+import com.lw.rardecompress.R;
+
+import edu.mit.mobile.android.imagecache.ImageCache;
+import edu.mit.mobile.android.imagecache.ImageCache.OnImageLoadListener;
 
 public class HasThumbItem extends FileItem implements OnImageLoadListener{
 

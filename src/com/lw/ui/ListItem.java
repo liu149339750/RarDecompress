@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.rardecompress.R;
 import com.lw.item.BaseItem;
 import com.lw.item.FileItem;
+import com.lw.rardecompress.R;
 
 public class ListItem extends LinearLayout{
 
@@ -39,6 +39,8 @@ public class ListItem extends LinearLayout{
 		mTimeTextView.setText(formatTime(item.getLastModifiedTime()));
 		if(item.isFile())
 			mSizeTextView.setText(((FileItem)item).getFileSize());
+		else
+			mSizeTextView.setText("");
 	}
 
 	private CharSequence formatTime(long lastModifiedTime) {

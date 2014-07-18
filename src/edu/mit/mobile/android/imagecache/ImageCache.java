@@ -68,8 +68,9 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.widget.ImageView;
 
-import com.example.rardecompress.MediaFile;
-import com.example.rardecompress.Util;
+import com.lw.activity.MediaFile;
+import com.lw.activity.Util;
+import com.lw.rardecompress.R;
 
 
 /**
@@ -512,6 +513,8 @@ public class ImageCache extends DiskCache<String, Bitmap> {
 				}
 				d = new BitmapDrawable(mRes, bmp);
 			}
+			if(d == null)
+				d = mRes.getDrawable(R.drawable.file_icon_default);
 			putDrawable(scaledKey, d);
 
 			return d;

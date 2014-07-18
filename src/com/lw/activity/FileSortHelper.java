@@ -17,7 +17,7 @@
  * along with SwiFTP.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.example.rardecompress;
+package com.lw.activity;
 
 import java.util.Comparator;
 import java.util.HashMap;

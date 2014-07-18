@@ -2,14 +2,13 @@ package com.lw.item;
 
 import java.io.File;
 
-
-
-import com.example.rardecompress.R;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+
+import com.lw.fragment.FragmentCallback;
+import com.lw.rardecompress.R;
 
 public  class BaseItem {
 	
@@ -33,6 +32,7 @@ public  class BaseItem {
 	private Resources mResources;
 	
 	protected String path;
+	protected FragmentCallback mCallback;
 	
 	
 	public BaseItem(Context context,String path){
@@ -106,6 +106,10 @@ public  class BaseItem {
 	
 	public boolean reName(String newName) {
 		return false;
+	}
+	
+	public void setCallback(FragmentCallback callback){
+		mCallback = callback;
 	}
 	
 }

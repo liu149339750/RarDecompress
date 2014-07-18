@@ -2,15 +2,15 @@ package com.lw.adapter;
 
 import java.util.List;
 
-import com.example.rardecompress.R;
-import com.lw.item.BaseItem;
-import com.lw.ui.ListItem;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.lw.item.BaseItem;
+import com.lw.rardecompress.R;
+import com.lw.ui.ListItem;
 
 public class FileAdapter extends BaseAdapter{
 	private List<BaseItem>mItems;

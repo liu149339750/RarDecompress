@@ -1,4 +1,4 @@
-package com.example.rardecompress;
+package com.lw.activity;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -10,6 +10,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.util.Log;
 
@@ -89,4 +91,12 @@ public class Util {
         }
         return "";
     }
+    
+	public static boolean isConected(Context context){
+		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo ni = cm.getActiveNetworkInfo();
+		if(ni != null && ni.isConnected())
+			return true;
+		return false;
+	}
 }
