@@ -36,18 +36,16 @@
         <RelativeLayout 
             android:id="@+id/ad"
             android:orientation="vertical"
-            android:gravity="center"
-            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="fill_parent"
             android:layout_width="fill_parent">
-         <ImageView 
-             android:visibility="gone"
+         <Button 
+             android:id="@+id/recomand"
+             android:text="赚话费"
              android:layout_alignParentRight="true"
              android:layout_alignParentTop="true"
-             android:layout_marginLeft="10dp"
-             android:layout_marginTop="10dp"
-               android:src="@drawable/cancel"
-               android:layout_height="35dp"
-           	   android:layout_width="35dp"/>
+             android:layout_height="wrap_content"
+           	 android:layout_width="wrap_content"/>
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout 

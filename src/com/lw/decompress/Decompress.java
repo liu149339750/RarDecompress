@@ -19,7 +19,6 @@ import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
 
-import com.hostzi.blenderviking.extractarchiveandroid.DecompressCallback;
 
 
 public class Decompress {

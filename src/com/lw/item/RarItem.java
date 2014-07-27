@@ -14,12 +14,12 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 
-import com.hostzi.blenderviking.extractarchiveandroid.DecompressCallback;
-import com.hostzi.blenderviking.extractarchiveandroid.ExtractFile;
 import com.lw.adapter.DialogAdapter;
 import com.lw.adapter.DialogAdapter.DialogObject;
 import com.lw.adapter.DialogAdapter.DialogType;
+import com.lw.decompress.DecompressCallback;
 import com.lw.decompress.DecompressProgressDialog;
+import com.lw.decompress.ExtractFile;
 import com.lw.rardecompress.R;
 
 public class RarItem extends CompressItem implements
@@ -63,7 +63,8 @@ public class RarItem extends CompressItem implements
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		if (which == DialogInterface.BUTTON_POSITIVE) {
-			extractFile.cancel();
+			if(extractFile != null)
+				extractFile.cancel();
 		} else if (which == DialogInterface.BUTTON_NEGATIVE) {
 
 		} else {
@@ -127,7 +128,7 @@ public class RarItem extends CompressItem implements
 
 	@Override
 	public void onProgress(long current, long total) {
-		if (mDialog.isShow()) {
+		if (mDialog.isShow() && total != 0) {
 			mDialog.setTotalProgress((int) (current * 100 / total));
 		}
 	}

@@ -151,6 +151,7 @@ public class FileListFragment extends ListFragment implements OnClickListener,On
 
 	@Override
 	public void onNotifyDataSetChanged() {
-		mAdapter.changeItems(getListItems(mCurrentItem));
+		if(getActivity() != null)
+			mAdapter.changeItems(getListItems(mCurrentItem));
 	}
 }

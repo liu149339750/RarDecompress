@@ -94,7 +94,8 @@ public class DecompressProgressDialog {
 	}
 	
 	public void dissMiss(){
-		mAlertDialog.dismiss();
+		if(mAlertDialog.isShowing())
+			mAlertDialog.dismiss();
 	}
 	
 	public void cancel(){

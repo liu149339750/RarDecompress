@@ -3,6 +3,7 @@ package com.lw.activity;
 import net.youmi.android.AdManager;
 import net.youmi.android.banner.AdSize;
 import net.youmi.android.banner.AdView;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -20,14 +21,12 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_main);
 		if (findViewById(R.id.content) != null) {
-		
-        if (savedInstanceState != null) {
-            return;
-        }
+
         	mListFragment = new FileListFragment();
-			getSupportFragmentManager().beginTransaction().add(R.id.content, mListFragment).commit();
+			getSupportFragmentManager().beginTransaction().replace(R.id.content, mListFragment).commit();
 		}
 		MobclickAgent.updateOnlineConfig( this );
 		AdManager.getInstance(this).init("49c6a07f582acbbe", "946b4bec08ff814a", false);
@@ -53,4 +52,9 @@ public class MainActivity extends FragmentActivity {
 		super.onPause();
 		MobclickAgent.onPause(this);
 		}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
 }
