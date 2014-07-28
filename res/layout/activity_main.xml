@@ -39,11 +39,20 @@
             android:gravity="center_vertical"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent">
-         <Button 
+
+         <ImageView 
+             android:id="@+id/image"
+             android:src="@drawable/ic_action_next"
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_alignParentRight="true"/>
+         
+        <TextView 
              android:id="@+id/recomand"
              android:text="赚话费"
-             android:layout_alignParentRight="true"
-             android:layout_alignParentTop="true"
+             android:layout_toLeftOf="@id/image"
+             android:layout_centerVertical="true"
              android:layout_height="wrap_content"
            	 android:layout_width="wrap_content"/>
         </RelativeLayout>

@@ -29,10 +29,10 @@ public class MainActivity extends FragmentActivity {
 			getSupportFragmentManager().beginTransaction().replace(R.id.content, mListFragment).commit();
 		}
 		MobclickAgent.updateOnlineConfig( this );
-		AdManager.getInstance(this).init("49c6a07f582acbbe", "946b4bec08ff814a", false);
-		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
-		ViewGroup adLayout=(ViewGroup)findViewById(R.id.ad);
-		adLayout.addView(adView); 
+//		AdManager.getInstance(this).init("49c6a07f582acbbe", "946b4bec08ff814a", false);
+//		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+//		ViewGroup adLayout=(ViewGroup)findViewById(R.id.ad);
+//		adLayout.addView(adView); 
 		if(Util.isConected(this))
 			findViewById(R.id.title_content).setVisibility(View.GONE);
 	}
