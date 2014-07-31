@@ -50,6 +50,7 @@
          
         <TextView 
              android:id="@+id/recomand"
+             android:layout_marginRight="-5dp"
              android:text="赚话费"
              android:layout_toLeftOf="@id/image"
              android:layout_centerVertical="true"

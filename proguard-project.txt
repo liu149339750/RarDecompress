@@ -1,0 +1,59 @@
+# To enable ProGuard in your project, edit project.properties
+# to define the proguard.config property as described in that file.
+#
+# Add project specific ProGuard rules here.
+# By default, the flags in this file are appended to flags specified
+# in ${sdk.dir}/tools/proguard/proguard-android.txt
+# You can edit the include path and order by changing the ProGuard
+# include property in project.properties.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# Add any project specific keep options here:
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+-keep class android.support.v4.**{*;}
+-dontwarn android.support.v4.**
+-keep class **.R$* {   *;  }
+
+-keepattributes Exceptions,InnerClasses,Signature
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+-dontshrink
+-dontoptimize
+
+#-libraryjars libs/umeng-analytics-v5.2.4.jar
+#-libraryjars libs/umeng-update-v2.4.2.jar
+#-libraryjars libs/xz.jar
+#-libraryjars libs/commons-compress-1.8.1.jar
+#-libraryjars libs/android-support-v4.jar
+#-libraryjars libs/YoumiSdk_v4.09_2014-06-16.jar
+#-libraryjars libs/AppOffer_2.1.1.jar
+
+-dontwarn com.umeng.**
+-keep class com.umeng.**{*;}
+-keep public class * extends com.umeng.**
+-keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-dontwarn cn.waps.**
+-keep public interface cn.waps.** {*;}
+-keep public class cn.waps.** {*;}
+-keep public class a.** {*;}
+
+-dontwarn net.youmi.android.**
+-keep class net.youmi.android.** {
+    *;
+}
+-keep class com.github.**{*;}

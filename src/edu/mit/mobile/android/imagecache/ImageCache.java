@@ -68,8 +68,8 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.widget.ImageView;
 
-import com.lw.activity.MediaFile;
-import com.lw.activity.Util;
+import com.lw.other.MediaFile;
+import com.lw.other.Util;
 import com.lw.rardecompress.R;
 
 
