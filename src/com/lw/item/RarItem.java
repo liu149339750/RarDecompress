@@ -44,6 +44,8 @@ public class RarItem extends CompressItem implements
 				R.drawable.decompress));
 		data.add(new DialogObject(DialogType.decompressNewFolder, "解压到新文件夹",
 				R.drawable.decompress));
+		data.add(new DialogObject(DialogType.delete, "删除",
+				R.drawable.decompress));
 		mAdapter = new DialogAdapter(mContext, data);
 		System.out.println("new AAdapter");
 		return mAdapter;
@@ -77,6 +79,17 @@ public class RarItem extends CompressItem implements
 				mEditText = new EditText(mContext);
 				mEditText.setText(name.subSequence(0, name.lastIndexOf(".")));
 				new AlertDialog.Builder(mContext).setView(mEditText).setTitle("输入新文件夹名").setPositiveButton("确定", listener).setNegativeButton("取消", listener).show();
+				break;
+			case delete:
+				new AlertDialog.Builder(mContext).setTitle(getName()).setMessage("你确定要删除吗").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						delete();
+						if(mCallback != null)
+							mCallback.onNotifyDataSetChanged();
+					}
+				}).setNegativeButton("取消", null).show();
 				break;
 			default:
 				break;

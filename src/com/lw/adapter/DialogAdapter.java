@@ -70,7 +70,7 @@ public class DialogAdapter extends BaseAdapter{
 	}
 	
 	public enum DialogType{
-		open,decompress,decompressCurrent,decompressNewFolder
+		open,decompress,decompressCurrent,decompressNewFolder,delete
 	}
 	
 }

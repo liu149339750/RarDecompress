@@ -2,12 +2,12 @@ package com.lw.activity;
 
 import org.json.JSONObject;
 
-import u.aly.da;
 import net.youmi.android.AdManager;
 import net.youmi.android.spot.SpotDialogListener;
 import net.youmi.android.spot.SpotManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -23,11 +23,13 @@ import com.umeng.update.UmengUpdateAgent;
 public class MainActivity extends FragmentActivity {
 
 	private FileListFragment mListFragment;
+	private Handler handler;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_main);
+		handler = new Handler();
 		if (findViewById(R.id.content) != null) {
 
         	mListFragment = new FileListFragment();
@@ -44,6 +46,19 @@ public class MainActivity extends FragmentActivity {
 				  System.out.println(data);
 					if(showMyApp())
 						findViewById(R.id.ad).setVisibility(View.VISIBLE);
+					if(showAd())
+						SpotManager.getInstance(MainActivity.this).showSpotAds(MainActivity.this, new SpotDialogListener() {
+						    @Override
+						    public void onShowSuccess() {
+						        Log.i("Youmi", "onShowSuccess");
+						        MobclickAgent.onEvent(MainActivity.this, "showAd");
+						    }
+
+						    @Override
+						    public void onShowFailed() {
+						        Log.i("Youmi", "onShowFailed");
+						    }
+						});
 			  }
 			});
 //		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
@@ -67,6 +82,19 @@ public class MainActivity extends FragmentActivity {
 		SpotManager.getInstance(this).loadSpotAds();
 		UmengUpdateAgent.update(this); 
 		
+		if(showAd())
+			SpotManager.getInstance(MainActivity.this).showSpotAds(MainActivity.this, new SpotDialogListener() {
+			    @Override
+			    public void onShowSuccess() {
+			        Log.i("Youmi", "onShowSuccess");
+			        MobclickAgent.onEvent(MainActivity.this, "showAd");
+			    }
+
+			    @Override
+			    public void onShowFailed() {
+			        Log.i("Youmi", "onShowFailed");
+			    }
+			});
 	}
 	
 	public boolean showMyApp(){
@@ -79,22 +107,6 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	public void onBackPressed() {
 		if(!mListFragment.back()){
-			if(SpotManager.checkSpotAdConfig(this)){
-				if(showAd())
-				SpotManager.getInstance(this).showSpotAds(this, new SpotDialogListener() {
-				    @Override
-				    public void onShowSuccess() {
-				        Log.i("Youmi", "onShowSuccess");
-				        MobclickAgent.onEvent(MainActivity.this, "showAd");
-				    }
-
-				    @Override
-				    public void onShowFailed() {
-				        Log.i("Youmi", "onShowFailed");
-				    }
-				});
-//				AppConnect.getInstance(this).showPopAd(this);
-			}
 			super.onBackPressed();
 //			moveTaskToBack(true);
 		}
