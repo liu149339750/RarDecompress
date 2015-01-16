@@ -178,7 +178,8 @@ public class Decompress {
 						}
 					}
 					if(mCallback != null){
-						mCallback.onEntryProgress(read, size);
+						if(size > 0)
+							mCallback.onEntryProgress(read, size);
 						mCallback.onProgress(totalRead, mTotal);
 					}
 					if(size - read < bsize){
@@ -305,10 +306,14 @@ public class Decompress {
             	if(size - count > 8 * 1024){
             		isCancel = false;
             		throw new Exception("cancel the progress");
+            	}else if(size == -1){
+            		isCancel = false;
+            		throw new Exception("cancel the progress");
             	}
             }
             if(mCallback != null && i%3 == 0){
-            	mCallback.onEntryProgress(count, size);
+            	if(size > 0)
+            		mCallback.onEntryProgress(count, size);
             	mCallback.onProgress(input.getBytesRead(), mTotal);
             }
         }

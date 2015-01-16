@@ -50,7 +50,10 @@ public class FileAdapter extends BaseAdapter{
 
 	public void changeItems(List<BaseItem> listItems) {
 		mItems.clear();
-		mItems.addAll(listItems);
+//		mItems.addAll(listItems);
+		for(BaseItem item : listItems){
+			mItems.add(item);
+		}
 		notifyDataSetChanged();
 	}
 	

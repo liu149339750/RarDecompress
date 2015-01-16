@@ -73,7 +73,7 @@ public class RarItem extends CompressItem implements
 			DialogObject object = (DialogObject) getAdapter().getItem(which);
 			switch (object.getType()) {
 			case decompressCurrent:
-				decompress(new File(getParent().getPath()));
+				decompress(new File(getParent().getPath() + "/" + getNameWithoutMimeType()));
 				break;
 			case decompressNewFolder:
 				mEditText = new EditText(mContext);

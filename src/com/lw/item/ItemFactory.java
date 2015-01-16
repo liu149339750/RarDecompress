@@ -4,10 +4,9 @@ import java.io.File;
 
 import android.content.Context;
 
-import com.lw.activity.MediaFile;
-import com.lw.activity.MediaFile.MediaFileType;
-import com.lw.fragment.FileListFragment;
 import com.lw.fragment.FragmentCallback;
+import com.lw.other.MediaFile;
+import com.lw.other.MediaFile.MediaFileType;
 
 public class ItemFactory {
 
@@ -27,6 +26,8 @@ public class ItemFactory {
 				item = new ImageItem(context, path);
 			else if(MediaFile.isVideoFileType(fileType.fileType))
 				item = new VideoItem(context, path);
+			else if(fileType.fileType == MediaFile.FILE_TYPE_HTML || fileType.fileType == MediaFile.FILE_TYPE_TEXT)
+				item = new TextItem(context,path);
 			else if(fileType.fileType == MediaFile.FILE_TYPE_APK)
 				item = new ApkItem(context,path);
 			else if(fileType.fileType >= MediaFile.FILE_TYPE_ZIP)

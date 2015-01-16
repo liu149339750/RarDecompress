@@ -92,6 +92,13 @@ public class Util {
         return "";
     }
     
+	public static String getStringWithoutMimeType(String name){
+		int end = name.lastIndexOf(".");
+		if(end == -1)
+			return name;
+		return name.substring(0, end);
+	}
+    
 	public static boolean isConected(Context context){
 		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo ni = cm.getActiveNetworkInfo();

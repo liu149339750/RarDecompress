@@ -2,13 +2,13 @@ package com.lw.item;
 
 import java.io.File;
 
-import com.lw.activity.MediaFile;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.text.format.Formatter;
+
+import com.lw.other.MediaFile;
 
 
 public class FileItem extends BaseItem{
@@ -39,6 +39,13 @@ public class FileItem extends BaseItem{
 			mimeType = MediaFile.getMimeTypeForFile(path);
 		}
 		return mimeType;
+	}
+	
+	public String getNameWithoutMimeType(){
+		int end = name.lastIndexOf(".");
+		if(end == -1)
+			return name;
+		return name.substring(0, end);
 	}
 	
 	@Override
@@ -80,6 +87,11 @@ public class FileItem extends BaseItem{
 		File nf = new File(file.getParentFile(), newName);
 		if(nf.exists())
 			return false;
-		return file.renameTo(nf);
+		boolean c = file.renameTo(nf);
+		if(c){
+			name = nf.getName();
+			path = nf.getPath();
+		}
+		return c;
 	}
 }

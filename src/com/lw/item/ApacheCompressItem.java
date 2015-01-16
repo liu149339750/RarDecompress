@@ -13,11 +13,12 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 
-import com.lw.activity.MediaFile;
 import com.lw.adapter.DialogAdapter;
 import com.lw.adapter.DialogAdapter.DialogObject;
 import com.lw.adapter.DialogAdapter.DialogType;
 import com.lw.decompress.DecompressProxy;
+import com.lw.other.MediaFile;
+import com.lw.other.Util;
 import com.lw.rardecompress.R;
 
 public class ApacheCompressItem extends CompressItem implements DialogInterface.OnClickListener{
@@ -77,9 +78,11 @@ public class ApacheCompressItem extends CompressItem implements DialogInterface.
 	public void onClick(DialogInterface dialog, int which) {
 		if(which == DialogInterface.BUTTON_POSITIVE){
 			if(mEditText != null){
-				String name = mEditText.getText().toString();
-				File parent = new File(getParent().path);
-				decompress(new File(parent, name));
+//				String name = mEditText.getText().toString();
+//				File parent = new File(getParent().path);
+//				decompress(new File(parent, name));
+				String path = mEditText.getText().toString();
+				decompress(new File(path));
 			}
 		}else if(which == DialogInterface.BUTTON_NEGATIVE){
 			
@@ -87,11 +90,12 @@ public class ApacheCompressItem extends CompressItem implements DialogInterface.
 		DialogObject object = (DialogObject) getAdapter().getItem(which);
 		switch (object.getType()) {
 		case decompressCurrent:
-			decompress(new File(getParent().path));
+			decompress(new File(getParent().path + "/" + getNameWithoutMimeType()));
 			break;
 		case decompressNewFolder:
 			mEditText = new EditText(mContext);
-			mEditText.setText(name.subSequence(0, name.lastIndexOf(".")));
+//			mEditText.setText(name.subSequence(0, name.lastIndexOf(".")));
+			mEditText.setText(Util.getStringWithoutMimeType(path));
 			new AlertDialog.Builder(mContext).setView(mEditText).setTitle("输入新文件夹名").setPositiveButton("确定", this).setNegativeButton("取消", this).show();
 			break;
 		case delete:

@@ -129,10 +129,13 @@ public class DecompressProxy implements DialogInterface.OnClickListener{
 
 		@Override
 		public void onEntryProgress(long current, long total) {
+			if(total <= 0)
+				return;
 			FileInfo fi = new FileInfo();
 			fi.current = current;
 			fi.total = total;
 			fi.type = Type.currentpercent;
+			System.out.println("current="+current + ",total="+total );
 			publishProgress(fi);
 		}
 

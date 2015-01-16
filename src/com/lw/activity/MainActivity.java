@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import cn.waps.AppConnect;
@@ -24,6 +25,7 @@ public class MainActivity extends FragmentActivity {
 
 	private FileListFragment mListFragment;
 	private Handler handler;
+	private boolean isHaseShowAd = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class MainActivity extends FragmentActivity {
 				  System.out.println(data);
 					if(showMyApp())
 						findViewById(R.id.ad).setVisibility(View.VISIBLE);
-					if(showAd())
+					if(showAd()&&!isHaseShowAd){
 						SpotManager.getInstance(MainActivity.this).showSpotAds(MainActivity.this, new SpotDialogListener() {
 						    @Override
 						    public void onShowSuccess() {
@@ -59,6 +61,8 @@ public class MainActivity extends FragmentActivity {
 						        Log.i("Youmi", "onShowFailed");
 						    }
 						});
+						isHaseShowAd = true;
+					}
 			  }
 			});
 //		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
@@ -80,9 +84,10 @@ public class MainActivity extends FragmentActivity {
 		
 		AdManager.getInstance(this).init("49c6a07f582acbbe", "946b4bec08ff814a", false);
 		SpotManager.getInstance(this).loadSpotAds();
+		UmengUpdateAgent.setDeltaUpdate(false);
 		UmengUpdateAgent.update(this); 
 		
-		if(showAd())
+		if(showAd() && !isHaseShowAd){
 			SpotManager.getInstance(MainActivity.this).showSpotAds(MainActivity.this, new SpotDialogListener() {
 			    @Override
 			    public void onShowSuccess() {
@@ -95,13 +100,15 @@ public class MainActivity extends FragmentActivity {
 			        Log.i("Youmi", "onShowFailed");
 			    }
 			});
+			isHaseShowAd = true;
+		}
 	}
 	
 	public boolean showMyApp(){
-		return Boolean.parseBoolean(MobclickAgent.getConfigParams(this, "showMyApp"));
+		return Boolean.parseBoolean(MobclickAgent.getConfigParams(this, "showMyApp1"));
 	}
 	public boolean showAd(){
-		return Boolean.parseBoolean(MobclickAgent.getConfigParams(this, "showAd"));
+		return Boolean.parseBoolean(MobclickAgent.getConfigParams(this, "showAd1"));
 	}
 
 	@Override
@@ -120,6 +127,12 @@ public class MainActivity extends FragmentActivity {
 	public void onPause() {
 		super.onPause();
 		MobclickAgent.onPause(this);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		System.out.println("Activit onCreateOp");
+		return false;
 	}
 	
 	

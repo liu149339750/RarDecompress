@@ -4,7 +4,7 @@ package com.lw.item;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
-import com.lw.activity.MediaFile;
+import com.lw.other.MediaFile;
 import com.lw.rardecompress.R;
 
 public class AudioItem extends FileItem{

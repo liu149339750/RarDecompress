@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lw.rardecompress"
-    android:versionCode="4"
-    android:versionName="1.2" >
+    android:versionCode="5"
+    android:versionName="1.3" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -59,13 +59,13 @@
             </intent-filter>
         </receiver>
         <meta-data android:name="APP_ID" android:value="5e120e9c0d4b56d697dcafef7783d897"/>
-		<meta-data android:name="APP_PID" android:value="wandoujia"/>
+		<meta-data android:name="APP_PID" android:value="baidu"/>
         <meta-data
             android:name="YOUMI_CHANNEL"
-            android:value="10070" >
+            android:value="10190" >
         </meta-data>
         <meta-data android:value="53c8f04756240b0cdd0423a7" android:name="UMENG_APPKEY"></meta-data>
-		<meta-data android:value="mumayi" android:name="UMENG_CHANNEL"/>
+		<meta-data android:value="anzhuo" android:name="UMENG_CHANNEL"/>
     </application>
 
 </manifest>
