@@ -15,10 +15,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.example.rar_library.R;
 import com.github.junrar.UnrarCallback;
 import com.github.junrar.Volume;
 import com.hostzi.blenderviking.zip.ManipZip;
+import com.lw.rardecompress.R;
 import com.snda.Andro7z.Andro7za;
 
 /**

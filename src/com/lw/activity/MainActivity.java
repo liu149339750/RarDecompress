@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 import cn.waps.AppConnect;
 
 import com.lw.fragment.FileListFragment;
@@ -20,6 +21,9 @@ import com.lw.rardecompress.R;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener;
 import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UmengUpdateListener;
+import com.umeng.update.UpdateResponse;
+import com.umeng.update.UpdateStatus;
 
 public class MainActivity extends FragmentActivity {
 
@@ -40,15 +44,15 @@ public class MainActivity extends FragmentActivity {
 		MobclickAgent.updateOnlineConfig( this );
 		if(showMyApp())
 			findViewById(R.id.ad).setVisibility(View.VISIBLE);
-		else
-			findViewById(R.id.ad).setVisibility(View.INVISIBLE);
+//		else
+//			findViewById(R.id.ad).setVisibility(View.INVISIBLE);
 		MobclickAgent.setOnlineConfigureListener(new UmengOnlineConfigureListener(){
 			  @Override
 			  public void onDataReceived(JSONObject data) {
 				  System.out.println(data);
 					if(showMyApp())
 						findViewById(R.id.ad).setVisibility(View.VISIBLE);
-					if(showAd()&&!isHaseShowAd){
+					if(showAd()&&!isHaseShowAd && forceShowAd()){
 						SpotManager.getInstance(MainActivity.this).showSpotAds(MainActivity.this, new SpotDialogListener() {
 						    @Override
 						    public void onShowSuccess() {
@@ -64,6 +68,8 @@ public class MainActivity extends FragmentActivity {
 						isHaseShowAd = true;
 					}
 			  }
+
+
 			});
 //		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
 //		ViewGroup adLayout=(ViewGroup)findViewById(R.id.ad);
@@ -74,7 +80,9 @@ public class MainActivity extends FragmentActivity {
 			
 			@Override
 			public void onClick(View v) {
-				AppConnect.getInstance(MainActivity.this).showMore(MainActivity.this,"8ae46d4021c89d8fa6016b3c1ead5f05");
+//				AppConnect.getInstance(MainActivity.this).showMore(MainActivity.this,"8ae46d4021c89d8fa6016b3c1ead5f05");
+//				UmengUpdateAgent.forceUpdate(MainActivity.this);
+				UmengUpdateAgent.forceUpdate(MainActivity.this);
 			}
 		});
 //		AppConnect.getInstance("5e120e9c0d4b56d697dcafef7783d897","default",this);
@@ -85,7 +93,7 @@ public class MainActivity extends FragmentActivity {
 		AdManager.getInstance(this).init("49c6a07f582acbbe", "946b4bec08ff814a", false);
 		SpotManager.getInstance(this).loadSpotAds();
 		UmengUpdateAgent.setDeltaUpdate(false);
-		UmengUpdateAgent.update(this); 
+//		UmengUpdateAgent.update(this); 
 		
 		if(showAd() && !isHaseShowAd){
 			SpotManager.getInstance(MainActivity.this).showSpotAds(MainActivity.this, new SpotDialogListener() {
@@ -93,6 +101,7 @@ public class MainActivity extends FragmentActivity {
 			    public void onShowSuccess() {
 			        Log.i("Youmi", "onShowSuccess");
 			        MobclickAgent.onEvent(MainActivity.this, "showAd");
+			       
 			    }
 
 			    @Override
@@ -102,6 +111,28 @@ public class MainActivity extends FragmentActivity {
 			});
 			isHaseShowAd = true;
 		}
+		if(!showAd())
+			UmengUpdateAgent.silentUpdate(this);
+		
+        UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
+			
+			@Override
+			public void onUpdateReturned(int arg0, UpdateResponse arg1) {
+				switch (arg0) {
+		        case UpdateStatus.Yes: // has update
+		            UmengUpdateAgent.showUpdateDialog(MainActivity.this, arg1);
+		            break;
+		        case UpdateStatus.No: // has no update
+		        		Toast.makeText(MainActivity.this, "已经是最新版本", Toast.LENGTH_SHORT).show();
+		            break;
+		        case UpdateStatus.NoneWifi: // none wifi
+		            break;
+		        case UpdateStatus.Timeout: // time out
+		            break;
+		        }
+			}
+		});
+
 	}
 	
 	public boolean showMyApp(){
@@ -110,10 +141,15 @@ public class MainActivity extends FragmentActivity {
 	public boolean showAd(){
 		return Boolean.parseBoolean(MobclickAgent.getConfigParams(this, "showAd1"));
 	}
+	private boolean forceShowAd() {
+		 return Boolean.parseBoolean(MobclickAgent.getConfigParams(this, "forceshowAd"));
+	}
 
 	@Override
 	public void onBackPressed() {
 		if(!mListFragment.back()){
+			if(!isHaseShowAd)
+				SpotManager.getInstance(MainActivity.this).showSpotAds(MainActivity.this);
 			super.onBackPressed();
 //			moveTaskToBack(true);
 		}
